@@ -381,15 +381,16 @@ SELECT post_id,
       info.email,
       info.aboutme,
       info.picture,
+      info.banner
     ];
 
 
     const query = `
       INSERT INTO
         users
-        (firstname, lastname, email, aboutme, picture)
+        (firstname, lastname, email, aboutme, picture, banner)
       VALUES
-        ($1, $2, $3, $4, $5)
+        ($1, $2, $3, $4, $5, $6)
       RETURNING id`;
 
     return pool.query(query, values);
@@ -401,7 +402,8 @@ SELECT post_id,
       info.email,
       info.aboutme,
       info.picture,
-      info.user_id,
+      info.banner,
+      info.user_id
     ];
 
     const query = `
@@ -412,9 +414,10 @@ SELECT post_id,
         lastname = $2,
         email = $3,
         aboutme = $4,
-        picture = $5
+        picture = $5,
+        banner = $6
       WHERE
-        id = $6`;
+        id = $7`;
 
     return pool.query(query, values);
   },
@@ -679,14 +682,15 @@ SELECT post_id,
       info.state,
       info.city,
       info.zip,
+      info.picture
     ];
 
     const createGroup = `
       INSERT INTO
         groups
-        (name, about, state, city, zip)
+        (name, about, state, city, zip, picture)
       VALUES
-        ($1, $2, $3, $4, $5)
+        ($1, $2, $3, $4, $5, $6)
       RETURNING
         id`;
 
@@ -780,8 +784,6 @@ SELECT post_id,
       info.group_id,
       info.requester_id
     ]
-
-    console.log(values)
 
     const query = `
       DELETE FROM
