@@ -370,5 +370,14 @@ module.exports = {
       console.log(err);
       res.sendStatus(400)
     }
+  },
+  getPeopleAndGroups: async (req, res) => {
+    try {
+      const results = await model.getPeopleAndGroups(req.params.term)
+      res.status(200).send(results)
+    } catch(err) {
+      console.log(err)
+      res.sendStatus(400)
+    }
   }
 };

@@ -794,5 +794,39 @@ SELECT post_id,
         requester_id = $2`;
 
     return pool.query(query, values)
-  }
+  },
+  getPeopleAndGroups: async (term) => {
+    const getUsers = `
+      SELECT
+       id as user_id,
+       firstname,
+       lastname,
+       picture
+      FROM
+        users
+      WHERE
+        LOWER(firstname)
+      LIKE
+        LOWER('%${term}%')
+      OR
+        LOWER(lastname)
+      LIKE
+        LOWER('%${term}%')`;
+
+    const getGroups = `
+      SELECT
+        id as group_id,
+        name,
+        picture
+      FROM
+        groups
+      WHERE
+        LOWER(name)
+      LIKE
+      LOWER('%${term}%')`;
+
+    const results = await Promise.all([pool.query(getGroups), pool.query(getUsers)]);
+    console.log(results)
+    return results[0].rows.concat(results[1].rows);
+  },
 };

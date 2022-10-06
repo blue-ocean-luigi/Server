@@ -23,6 +23,9 @@ router.post('/rsvp', controller.createRsvp)
 router.put('/rsvp/:post_id&:user_id', controller.updateRsvp)
 router.delete('/rsvp/:post_id&:user_id', controller.deleteRsvp)
 
+//search
+router.get('/search/:term', controller.getPeopleAndGroups)
+
 //users
 router.get('/user/info/email', controller.getUserByEmail)
 router.get('/user/info/id', controller.getUserByID)
