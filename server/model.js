@@ -9,7 +9,7 @@ module.exports = {
             p.user_id as author_id,
             u.firstName as firstName,
             u.lastName as lastName,
-            picture,
+            u.picture,
             content,
             createdAt as date,
             isEvent,
