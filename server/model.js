@@ -104,7 +104,7 @@ SELECT post_id,
             p.user_id as author_id,
             u.firstName as firstName,
             u.lastName as lastName,
-            picture,
+            u.picture,
             content,
             createdAt as date,
             isEvent,
@@ -438,6 +438,7 @@ SELECT post_id,
     return pool.query(query, values);
   },
   updateUser: (info) => {
+    console.log(info)
     const values = [
       info.firstname,
       info.lastname,
@@ -447,6 +448,7 @@ SELECT post_id,
       info.banner,
       info.user_id
     ];
+    console.log(values)
 
     const query = `
       UPDATE
