@@ -23,7 +23,7 @@ const http = require('http').Server(app);
 
 const socketIO = require('socket.io')(http, {
   cors: {
-    origin: 'http://localhost:3000' // incoming URL for clients
+    origin: 'http://184.72.9.10:3000' // incoming URL for clients
   }
 });
 
